@@ -40,7 +40,7 @@ function App() {
               ></div>
               <div className="mr-20 flex">
                 <p className="mb-5">Мужские Кроссовки Nike Blazer Mid Suede</p>
-                <b>12 999 kzt.</b>
+                <b>15 999 kzt.</b>
               </div>
               <img className="removeBtn" src="/img/btn-remove.svg" alt="" />
             </div>
