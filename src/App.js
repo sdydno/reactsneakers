@@ -1,7 +1,10 @@
+// eslint-disable-next-line no-unused-vars
+import Card from "./components/Card";
+
 function App() {
   return (
     <div className="wrapper clear">
-      <div style={{display:'none'}} className="overlay">
+      <div style={{ display: "none" }} className="overlay">
         <div className="drawer">
           <h2 className="d-flex justify-between mb-30">
             Card
@@ -107,25 +110,6 @@ function App() {
         </div>
 
         <div className="sneakers">
-          
-          <div className="card">
-            <div className="favotire">
-              <img src="/img/unliked.svg" alt="unliked" />
-            </div>
-
-            <img width={170} height={133} src="/img/sneakers/1.jpg" alt="" />
-            <h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена:</span>
-                <b>12 999 kzt.</b>
-              </div>
-              <button className="button">
-                <img width={11} height={11} src="/img/plus.svg" alt="" />
-              </button>
-            </div>
-          </div>
-
           <div className="card">
             <img width={170} height={133} src="/img/sneakers/2.jpg" alt="" />
             <h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
@@ -167,7 +151,6 @@ function App() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
