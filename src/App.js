@@ -1,7 +1,7 @@
 function App() {
   return (
     <div className="wrapper clear">
-      <div className="overlay">
+      <div style={{display:'none'}} className="overlay">
         <div className="drawer">
           <h2 className="d-flex justify-between mb-30">
             Card
@@ -96,6 +96,7 @@ function App() {
           </li>
         </ul>
       </header>
+
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
           <h1>Все кроссовки</h1>
@@ -104,7 +105,9 @@ function App() {
             <input placeholder="Search..." />
           </div>
         </div>
+
         <div className="sneakers">
+          
           <div className="card">
             <div className="favotire">
               <img src="/img/unliked.svg" alt="unliked" />
@@ -164,6 +167,7 @@ function App() {
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </div>
