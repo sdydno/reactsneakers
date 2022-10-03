@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 function Card() {
   return (
     <div className="card">
@@ -20,3 +20,5 @@ function Card() {
     </div>
   );
 }
+
+export default Card;
