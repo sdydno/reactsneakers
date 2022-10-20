@@ -15,26 +15,41 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    axios
-      .get("https://63419af616ffb7e275d4ae9a.mockapi.io/items")
-      .then((res) => {
-        setItems(res.data);
-      });
-    axios
-      .get("https://63419af616ffb7e275d4ae9a.mockapi.io/cart")
-      .then((res) => {
-        setCartItems(res.data);
-      });
-    axios
-      .get("https://63419af616ffb7e275d4ae9a.mockapi.io/favorites")
-      .then((res) => {
-        setFavorites(res.data);
-      });
+    async function fetchData() {
+      const itemsResponse = await axios
+        .get("https://63419af616ffb7e275d4ae9a.mockapi.io/items");
+      const cartResponse = await axios
+        .get("https://63419af616ffb7e275d4ae9a.mockapi.io/cart");
+      const favoritesResponse = await axios.get(
+        "https://63419af616ffb7e275d4ae9a.mockapi.io/favorites"
+      );
+        setItems(itemsResponse.data);
+        setCartItems(cartResponse.data);
+        setFavorites(favoritesResponse.data);
+    }
+
+    fetchData();
   }, []);
 
   const onAddToCart = (obj) => {
-    axios.post("https://63419af616ffb7e275d4ae9a.mockapi.io/cart", obj);
-    setCartItems((prev) => [...prev, obj]);
+    try {
+      if
+      (cartItems.find((item) => Number(item.id) === Number(obj.id)))
+      {
+        axios.delete(
+          `https://63419af616ffb7e275d4ae9a.mockapi.io/favorites/${obj.id}`
+        );
+        setCartItems((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(obj.id))
+        );
+      } else {
+        axios.post("https://63419af616ffb7e275d4ae9a.mockapi.io/cart", obj);
+        setCartItems((prev) => [...prev, obj]);
+      }
+
+    } catch (error) {
+      alert('Error, try add to cart')
+    }
   };
 
   const onChangeSearchInput = (event) => {
@@ -61,7 +76,7 @@ function App() {
       }
 
     } catch (error) {
-      alert('Error try add favorites')
+      alert('Error, try add to favorites')
     }
   };
 
@@ -82,6 +97,7 @@ function App() {
           element={
             <Home
               items={items}
+              cartItems={cartItems}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               onChangeSearchInput={onChangeSearchInput}
@@ -92,7 +108,9 @@ function App() {
         />
         <Route
           path="/Favorites"
-          element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite}/>}
+          element={
+            <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
+          }
         />
       </Routes>
     </div>
